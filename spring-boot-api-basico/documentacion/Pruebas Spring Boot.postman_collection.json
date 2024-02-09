@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "1adc9a06-b151-4794-8fe4-729c72be8381",
+		"name": "Pruebas Spring Boot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Eventos - Todos los eventos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eventos - Detalle de un evento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/evento/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"evento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cafés - Alta de un café",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"99999\",\n    \"name\": \"Roasted Inferno\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/coffees",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"coffees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cafés - Modificar un café",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"99999\",\n    \"name\": \"Roasted Inferno nuevo II\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/coffees/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"coffees",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cafés - Borrar un café",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/coffees/99999",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"coffees",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

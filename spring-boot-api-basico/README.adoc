@@ -1,0 +1,37 @@
+:icons: font
+:source-highlighter: highlightjs
+:sectnums:
+:toc:
+
+== Pruebas con Spring Boot
+Ejemplo de creación de un API rest usando Spring boot
+
+[IMPORTANT]
+El proyecto está configurado para usar java 21
+
+Pasos para ejecutar el proyecto:
+
+* Levantar MariaDB usando el script *compose.yaml* en el directorio *podman/*:
++
+[source, bash]
+----
+./mariadb
+----
+* Levantamos la aplicación:
++
+[source, bash]
+----
+mvn clean spring-boot:run
+----
+
+* Creamos la BD desde el fichero *database/organizalia.mdb* y cargamos los datos iniciales desde el fichero *database/carga_inicial_bd.sql*, que cargará la tabla de locales y las relacionadas:
++
+----
+# TODO: crear un endpoint que cree la BD y cargue las tablas
+mysql -h filemon  -u root -ptest organizalia < carga_inicial_bd.sql
+----
+
+== ToDo
+* El endpoint que hay creado consulta un evento por id pero los datos que tenemos en BD son de locales -> crear los endpoints para gestionar locales
+
+

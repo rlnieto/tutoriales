@@ -1,0 +1,5 @@
+= Tutoriales java
+
+Proyectos:
+
+* *spring-boot-api-basico*: creación de un API rest con srping boot (sin usar OpenAPI)
