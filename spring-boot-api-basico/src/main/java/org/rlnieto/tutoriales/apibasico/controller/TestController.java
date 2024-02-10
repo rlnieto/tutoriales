@@ -1,33 +1,28 @@
 package org.rlnieto.tutoriales.apibasico.controller;
 
-import org.rlnieto.tutoriales.apibasico.model.Evento;
-import org.rlnieto.tutoriales.apibasico.service.EventoService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestController
-@RequestMapping("/eventos")
-public class EventoController {
+@RequestMapping("/test")
+public class TestController {
 
-    private EventoService eventoService;
-
-    public EventoController(EventoService eventoService){
-        this.eventoService = eventoService;
+    /**
+     * Ejemplo de uso de GET con datos en el path
+     * Devuelve el texto enviado en el path
+     *
+     * @param mensaje
+     * @return
+     */
+     @GetMapping("/echo/{mensaje}")
+     ResponseEntity<String> echo(@PathVariable String mensaje){
+         return new ResponseEntity<String>(mensaje, HttpStatus.OK);
     }
 
-    @GetMapping
-    Iterable<Evento> todosLosEventos(){
-        return this.eventoService.todosLosEventos();
-    }
 
-    @GetMapping("/{id}")
-    Optional<Evento> findAllEventos(@PathVariable Long id){
-        return this.eventoService.datosEvento(id);
-    }
 
 
 /*    @GetMapping("/{id}")
@@ -39,7 +34,7 @@ public class EventoController {
 
         return new ResponseEntity<Optional<Evento>>(evento, status);
     }
-*/
+
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
     Evento postEvento(@RequestBody Evento evento){
@@ -60,5 +55,5 @@ public class EventoController {
 
 
     }
-
+*/
 }

@@ -15,10 +15,6 @@
 	<description>Ejemplo básico de creación de un API rest con Spring boot</description>
 	<properties>
 		<maven.compiler.release>21</maven.compiler.release>
-
-		<!-- Versions -->
-		<mariadb.version>2.7.4</mariadb.version>
-
 	</properties>
 
 	<!--
@@ -44,29 +40,12 @@
 			<optional>true</optional>
 		</dependency>
 
-		<!-- Database -->
-		<dependency>
-			<groupId>jakarta.persistence</groupId>
-			<artifactId>jakarta.persistence-api</artifactId>
-			<version>3.1.0</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.27</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mariadb.jdbc</groupId>
-			<artifactId>mariadb-java-client</artifactId>
-			<version>3.1.4</version>
-		</dependency>
 	</dependencies>
 
 	<build>
