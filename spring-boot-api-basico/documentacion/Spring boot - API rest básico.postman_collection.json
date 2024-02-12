@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "0ba68568-47c9-434e-9026-e0fc79936440",
+		"name": "Spring boot - API rest básico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7473572"
+	},
+	"item": [
+		{
+			"name": "Echo service con mensaje en el path",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/test/echo/:texto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"echo",
+						":texto"
+					],
+					"variable": [
+						{
+							"key": "texto",
+							"value": "Texto de ejemplo enviado en el path"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Echo service con mensaje en body",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    texto: \"Texto de ejemplo enviado como json\",\n    otro_texto: \"Más texto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/test/echo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"test",
+						"echo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
