@@ -1,14 +1,30 @@
 package org.rlnieto.tutoriales.apibasico.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestController
 @RequestMapping("/test")
-public class TestController {
+public class EventoController {
+
+    /**
+     * Ejemplo de uso de GET con datos enviados en el body como json
+     * Devuelve el texto enviado en el body
+     *
+     * @param mensaje
+     * @return
+    @GetMapping("/echo")
+    */
+    ResponseEntity<String> echoBody(@RequestBody String mensaje){
+
+
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(mensaje);
+    }
+
 
     /**
      * Ejemplo de uso de GET con datos en el path
@@ -18,7 +34,7 @@ public class TestController {
      * @return
      */
      @GetMapping("/echo/{mensaje}")
-     ResponseEntity<String> echo(@PathVariable String mensaje){
+     ResponseEntity<String> echoPath(@PathVariable String mensaje){
          return new ResponseEntity<String>(mensaje, HttpStatus.OK);
     }
 
