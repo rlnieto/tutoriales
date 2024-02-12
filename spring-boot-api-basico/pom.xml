@@ -40,10 +40,17 @@
 			<optional>true</optional>
 		</dependency>
 
-
+		<!-- Thymeleaf - motor de plantillas -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!-- Javafaker - Generador de datos aleatorios para testing -->
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 
 	</dependencies>

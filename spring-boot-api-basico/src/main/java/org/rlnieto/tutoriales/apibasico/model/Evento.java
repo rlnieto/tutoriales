@@ -1,14 +1,14 @@
 package org.rlnieto.tutoriales.apibasico.model;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Evento {
     private Long id;
     private String motivo;
-    private short tipo;
-    private Date fecha;
-    private Time hora;
+    private String tipo;
+    private LocalDate fecha;
+    private LocalTime hora;
 
     /**
      * Empty constructor
@@ -22,6 +22,10 @@ public class Evento {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getMotivo() {
         return motivo;
     }
@@ -30,28 +34,40 @@ public class Evento {
         this.motivo = motivo;
     }
 
-    public short getTipo() {
+    public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(short tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        String datos = String.format("ID: %d - Fecha: %s - Hora: %s - Tipo: %s - Motivo: %s",
+                this.id,
+                this.fecha.toString(),
+                this.hora.toString(),
+                this.tipo,
+                this.motivo);
+
+        return datos;
+    }
 }

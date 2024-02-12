@@ -31,6 +31,7 @@ public class Evento {
 
     // Getters & setters
     public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
     public String getMotivo() {return motivo;}
     public void setMotivo(String motivo) {this.motivo = motivo;}
     public short getTipo() {return tipo;}
