@@ -1,6 +1,5 @@
 package org.rlnieto.tutoriales.apibasico;
 
-import org.rlnieto.tutoriales.apibasico.util.EventosLoader;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,10 +18,9 @@ public class Application {
 	// aplicación en main se creará este bean y al devolver una instancia de ApplicationRunner, el código
 	// del método se ejecutará inmediatamente
 	@Bean
-	public ApplicationRunner configure(EventosLoader eventosLoader, ConfigurableApplicationContext context){
+	public ApplicationRunner configure(ConfigurableApplicationContext context){
 		return env ->
 		{
-			eventosLoader.randomEventos();
 			System.out.println("ApplicationRunner creado...");
 
 			// Si queremos salir de la aplicación:

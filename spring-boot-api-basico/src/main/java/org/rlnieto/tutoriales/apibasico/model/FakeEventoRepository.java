@@ -1,29 +1,54 @@
-package org.rlnieto.tutoriales.apibasico.util;
+package org.rlnieto.tutoriales.apibasico.model;
 
 import com.github.javafaker.Faker;
-import org.rlnieto.tutoriales.apibasico.model.Evento;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Crea una colección de eventos para pruebas
+ * Repositorio fake, se crea un hashmap con datos aleatorios y los métodos
+ * para consultarlo
+ *
  */
 @Service
-public class EventosLoader {
+public class FakeEventoRepository {
+    HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>(10);
 
-    public List<Evento> randomEventos() {
+    /**
+     * Constructor
+     * Cargamos un hash con datos aleatorios y haremos las consultas sobre él
+     */
+    public FakeEventoRepository(){
+        this.eventos = this.eventosRandom();
+    }
+
+
+    /**
+     * Búsqueda por clave
+     * @param id
+     * @return
+     */
+    public Evento findById(int id){
+        return this.eventos.get(id);
+    }
+
+
+    /**
+     * Método privada para cargar el hashmap utilizado en las operaciones del fake repository
+     *
+     * @return
+     */
+    private HashMap<Integer, Evento> eventosRandom() {
 
         Faker faker = new Faker(new Locale("es"));
-        List<Evento> eventos = new ArrayList<Evento>(10);
+        HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>(10);
 
         for (int i = 0; i < 10; i++) {
             Evento evento = new Evento();
@@ -46,7 +71,7 @@ public class EventosLoader {
             evento.setTipo("Cena");
             evento.setMotivo(faker.food().dish());
 
-            eventos.add(evento);
+            eventos.put(i, evento);
         }
         return eventos;
     }

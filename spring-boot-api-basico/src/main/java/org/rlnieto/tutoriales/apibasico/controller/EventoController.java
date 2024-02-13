@@ -1,23 +1,51 @@
 package org.rlnieto.tutoriales.apibasico.controller;
 
+import org.rlnieto.tutoriales.apibasico.model.Evento;
+import org.rlnieto.tutoriales.apibasico.model.EventoError;
+import org.rlnieto.tutoriales.apibasico.model.FakeEventoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/evento")
+//@RequestMapping("/evento")
 public class EventoController {
 
-    /**
-     * Ejemplo de uso de GET con datos enviados en el body como json
-     * Devuelve el texto enviado en el body
-     *
-     * @param mensaje
-     * @return
-    @GetMapping("/echo")
-    */
-    ResponseEntity<String> echoBody(@RequestBody String mensaje){
+    FakeEventoRepository eventoRepository;
 
+    /**
+     * Constructor
+     * @param eventoRepository
+     */
+    public EventoController(FakeEventoRepository eventoRepository){
+        this.eventoRepository = eventoRepository;
+    }
+
+    /**
+     * Búsqueda de un evento por clave
+     * @param id
+     * @return
+     */
+    @GetMapping("/evento/{id}")
+    ResponseEntity echoPath(@PathVariable int id){
+        Evento evento = this.eventoRepository.findById(id);
+
+        // Si el evento no existe devolvemos un 404
+        if(null == evento){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(evento);
+    }
+
+
+
+    @GetMapping("/echo")
+    ResponseEntity<String> echoBody(@RequestBody String mensaje){
 
 
         return ResponseEntity
@@ -25,18 +53,6 @@ public class EventoController {
                 .body(mensaje);
     }
 
-
-    /**
-     * Ejemplo de uso de GET con datos en el path
-     * Devuelve el texto enviado en el path
-     *
-     * @param mensaje
-     * @return
-     */
-     @GetMapping("/echo/{mensaje}")
-     ResponseEntity<String> echoPath(@PathVariable String mensaje){
-         return new ResponseEntity<String>(mensaje, HttpStatus.OK);
-    }
 
 
 
