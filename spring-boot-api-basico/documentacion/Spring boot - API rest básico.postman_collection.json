@@ -33,7 +33,7 @@
 			"response": []
 		},
 		{
-			"name": "Echo service con mensaje en body",
+			"name": "Consulta de todos los eventos",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -50,15 +50,42 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/test/echo",
+					"raw": "http://localhost:8080/eventos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"test",
-						"echo"
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alta de evento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 100,\n    \"motivo\": \"pruebas\",\n    \"tipo\": \"pruebas\",\n    \"fecha\": \"2024-02-17\",\n    \"hora\": \"11:00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eventos"
 					]
 				}
 			},
