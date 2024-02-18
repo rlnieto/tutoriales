@@ -48,6 +48,8 @@ public class Evento {
 
 ----
 
+Simularemos el acceso a una base de datos mediante un HashMap
+
 == Enpoints
 Crear un endpoint con Spring boot es muy simple, sólo tenemos que crear una clase de tipo *RestController* y anotar los métodos que 'atenderán' las urls de nuestra API. Vamos a definir las siguientes rutas:
 

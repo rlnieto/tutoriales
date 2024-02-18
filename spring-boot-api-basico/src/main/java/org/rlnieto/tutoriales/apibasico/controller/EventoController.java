@@ -23,7 +23,7 @@ public class EventoController {
         this.eventoRepository = eventoRepository;
     }
 
-    @GetMapping("/evento")
+    @GetMapping("/eventos")
     ResponseEntity allEvents(){
         List<Evento> eventos = this.eventoRepository.findAll();
 
@@ -38,8 +38,8 @@ public class EventoController {
      * @param id
      * @return
      */
-    @GetMapping("/evento/{id}")
-    ResponseEntity eventoById(@PathVariable int id){
+    @GetMapping("/eventos/{id}")
+    ResponseEntity eventoById(@PathVariable Long id){
         Evento evento = this.eventoRepository.findById(id);
 
         // Si el evento no existe devolvemos un 404
@@ -54,7 +54,16 @@ public class EventoController {
                 .body(evento);
     }
 
+    @PostMapping("/eventos")
+    ResponseEntity altaEvento(@RequestBody Evento evento){
 
+        // TODO: ¿añadir validaciones sobre el objeto evento antes de insertarlo?
+        this.eventoRepository.altaEvento(evento);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(evento);
+    }
 
     @GetMapping("/echo")
     ResponseEntity<String> echoBody(@RequestBody String mensaje){

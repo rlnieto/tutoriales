@@ -3,7 +3,6 @@ package org.rlnieto.tutoriales.apibasico.model;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class FakeEventoRepository {
-    HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>(10);
+    HashMap<Long, Evento> eventos = new HashMap<Long, Evento>(10);
 
     /**
      * Constructor
@@ -34,7 +33,7 @@ public class FakeEventoRepository {
      * @param id
      * @return
      */
-    public Evento findById(int id){
+    public Evento findById(Long id){
         return this.eventos.get(id);
     }
 
@@ -50,14 +49,23 @@ public class FakeEventoRepository {
     }
 
     /**
+     * Añade un evento en el hashmap
+     * @param evento
+     */
+    public void altaEvento(Evento evento){
+        this.eventos.put(evento.getId(), evento);
+    }
+
+
+    /**
      * Método privada para cargar el hashmap utilizado en las operaciones del fake repository
      *
      * @return
      */
-    private HashMap<Integer, Evento> eventosRandom() {
+    private HashMap<Long, Evento> eventosRandom() {
 
         Faker faker = new Faker(new Locale("es"));
-        HashMap<Integer, Evento> eventos = new HashMap<Integer, Evento>(10);
+        HashMap<Long, Evento> eventos = new HashMap<Long, Evento>(10);
 
         for (int i = 0; i < 10; i++) {
             Evento evento = new Evento();
@@ -81,7 +89,7 @@ public class FakeEventoRepository {
             //evento.setMotivo(faker.food().dish());
             evento.setMotivo(faker.company().bs());
             //evento.setMotivo(faker.friends().location());
-            eventos.put(i, evento);
+            eventos.put(Long.valueOf(i), evento);
         }
         return eventos;
     }
