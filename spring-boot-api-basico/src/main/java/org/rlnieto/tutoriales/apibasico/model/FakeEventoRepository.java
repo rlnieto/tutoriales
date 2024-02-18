@@ -3,13 +3,12 @@ package org.rlnieto.tutoriales.apibasico.model;
 import com.github.javafaker.Faker;
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,6 +38,16 @@ public class FakeEventoRepository {
         return this.eventos.get(id);
     }
 
+    /**
+     * Devuelve todos los eventos del hashmap
+     * @return
+     */
+    public List<Evento> findAll(){
+        List<Evento> listaEventos = new ArrayList<Evento>(this.eventos.size());
+        listaEventos.addAll(this.eventos.values());
+
+        return listaEventos;
+    }
 
     /**
      * Método privada para cargar el hashmap utilizado en las operaciones del fake repository
@@ -68,9 +77,10 @@ public class FakeEventoRepository {
             // Cargamos los datos en el DTO
             evento.setFecha(fecha);
             evento.setHora(hora);
-            evento.setTipo("Cena");
-            evento.setMotivo(faker.food().dish());
-
+            evento.setTipo("Charla");
+            //evento.setMotivo(faker.food().dish());
+            evento.setMotivo(faker.company().bs());
+            //evento.setMotivo(faker.friends().location());
             eventos.put(i, evento);
         }
         return eventos;

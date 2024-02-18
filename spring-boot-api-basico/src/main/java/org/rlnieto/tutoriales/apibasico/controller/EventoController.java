@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 //@RequestMapping("/evento")
 public class EventoController {
@@ -21,13 +23,23 @@ public class EventoController {
         this.eventoRepository = eventoRepository;
     }
 
+    @GetMapping("/evento")
+    ResponseEntity allEvents(){
+        List<Evento> eventos = this.eventoRepository.findAll();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventos);
+    }
+
+
     /**
      * Búsqueda de un evento por clave
      * @param id
      * @return
      */
     @GetMapping("/evento/{id}")
-    ResponseEntity echoPath(@PathVariable int id){
+    ResponseEntity eventoById(@PathVariable int id){
         Evento evento = this.eventoRepository.findById(id);
 
         // Si el evento no existe devolvemos un 404
