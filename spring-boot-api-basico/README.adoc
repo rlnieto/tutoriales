@@ -11,22 +11,26 @@ El proyecto está configurado para usar java 21
 
 Vamos a ver cómo crear un API REST básico con Spring boot. Esta no es la manera habitual de hacerlo, es simplemente un un ejemplo para enteder los concepto básicos que se manejan.
 
-Para este ejemplo usaremos la clase *Evento*, pensada para modelar un 'evento' social como por ejemplo esa cena entre amigos:
+Para este ejemplo usaremos la clase *Evento*, pensada para modelar un 'evento' social como por ejemplo una charla o esa cena entre amigos:
 
 [source, java]
 ----
 package org.rlnieto.tutoriales.apibasico.model;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Evento {
     private Long id;
     private String motivo;
-    private short tipo;
-    private Date fecha;
-    private Time hora;
+    private String tipo;
+    private LocalDate fecha;
+    private LocalTime hora;
 
+    /**
+     * Empty constructor
+     *
+     */
     public Evento(){}
 
     // Getters & setters
@@ -34,12 +38,12 @@ public class Evento {
     public void setId(Long id) {this.id = id;}
     public String getMotivo() {return motivo;}
     public void setMotivo(String motivo) {this.motivo = motivo;}
-    public short getTipo() {return tipo;}
-    public void setTipo(short tipo) {this.tipo = tipo;}
-    public Date getFecha() {return fecha;}
-    public void setFecha(Date fecha) {this.fecha = fecha;}
-    public Time getHora() {return hora;}
-    public void setHora(Time hora) {this.hora = hora;}
+    public String getTipo() {return tipo;}
+    public void setTipo(String tipo) {this.tipo = tipo;}
+    public LocalDate getFecha() {return fecha;}
+    public void setFecha(LocalDate fecha) {this.fecha = fecha;}
+    public LocalTime getHora() {return hora;}
+    public void setHora(LocalTime hora) {this.hora = hora;}
 }
 
 ----
@@ -48,6 +52,7 @@ public class Evento {
 Crear un endpoint con Spring boot es muy simple, sólo tenemos que crear una clase de tipo *RestController* y anotar los métodos que 'atenderán' las urls de nuestra API. Vamos a definir las siguientes rutas:
 
 * GET:
+** Consulta de todos los eventos
 ** Consulta de un evento indicando la clave en el path:
 ** Consulta de un evento indicando la clave en el body:
 * POST:
@@ -59,9 +64,9 @@ Crear un endpoint con Spring boot es muy simple, sólo tenemos que crear una cla
 * PATCH:
 ** Actualización de un evento indicando la clave en el path y los datos en el body. La diferencia con PUT es que en el primer caso se envían todos los datos de la entidad y con PATCH solamente los valores que cambian
 
-De momento no tenemos una BD en la que guardar los eventos y vamos a usar una colección
+De momento no tenemos una BD en la que guardar los eventos y vamos a usar un HashMap
 
-Puedes ejecutar el proyecto ejecutando la clase *Application* desde el IDE que estés utilizando o con maven desde consola:
+Se puede arrancar el proyecto ejecutando la clase *Application* desde el IDE que estés utilizando o con maven desde consola:
 [source, bash]
 ----
 mvn clean spring-boot:run
