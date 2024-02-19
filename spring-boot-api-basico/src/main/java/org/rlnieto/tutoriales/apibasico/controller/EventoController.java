@@ -1,25 +1,25 @@
 package org.rlnieto.tutoriales.apibasico.controller;
 
 import org.rlnieto.tutoriales.apibasico.model.Evento;
-import org.rlnieto.tutoriales.apibasico.model.EventoError;
-import org.rlnieto.tutoriales.apibasico.model.FakeEventoRepository;
+import org.rlnieto.tutoriales.apibasico.model.EventoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 //@RequestMapping("/evento")
 public class EventoController {
 
-    FakeEventoRepository eventoRepository;
+    EventoRepository eventoRepository;
 
     /**
      * Constructor
      * @param eventoRepository
      */
-    public EventoController(FakeEventoRepository eventoRepository){
+    public EventoController(EventoRepository eventoRepository){
         this.eventoRepository = eventoRepository;
     }
 
@@ -54,6 +54,11 @@ public class EventoController {
                 .body(evento);
     }
 
+    /**
+     * Alta de un evento
+     * @param evento
+     * @return
+     */
     @PostMapping("/eventos")
     ResponseEntity altaEvento(@RequestBody Evento evento){
 
@@ -65,16 +70,24 @@ public class EventoController {
                 .body(evento);
     }
 
-    @GetMapping("/echo")
-    ResponseEntity<String> echoBody(@RequestBody String mensaje){
+    /**
+     * Borrado de un evento por clave
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/eventos/{id}")
+    ResponseEntity bajaEvento(@PathVariable Long id){
+        Optional<Evento> evento = this.eventoRepository.bajaEvento(id);
 
-
+        if(evento.isEmpty()){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(mensaje);
+                .body(evento.get());
     }
-
-
 
 
 

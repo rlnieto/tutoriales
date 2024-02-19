@@ -16,14 +16,14 @@ import java.util.concurrent.TimeUnit;
  *
  */
 @Service
-public class FakeEventoRepository {
+public class EventoRepository {
     HashMap<Long, Evento> eventos = new HashMap<Long, Evento>(10);
 
     /**
      * Constructor
      * Cargamos un hash con datos aleatorios y haremos las consultas sobre él
      */
-    public FakeEventoRepository(){
+    public EventoRepository(){
         this.eventos = this.eventosRandom();
     }
 
@@ -57,8 +57,14 @@ public class FakeEventoRepository {
     }
 
 
+    public Optional<Evento> bajaEvento(Long id){
+        Evento evento = this.eventos.remove(id);
+        return Optional.ofNullable(evento);
+    }
+
+
     /**
-     * Método privada para cargar el hashmap utilizado en las operaciones del fake repository
+     * Método privada para cargar el hashmap utilizado en las operaciones del repository
      *
      * @return
      */
