@@ -33,8 +33,9 @@ public class EventoRepository {
      * @param id
      * @return
      */
-    public Evento findById(Long id){
-        return this.eventos.get(id);
+    public Optional<Evento> findById(Long id){
+        Optional<Evento>evento = Optional.ofNullable(this.eventos.get(id));
+        return evento;
     }
 
     /**
@@ -56,7 +57,11 @@ public class EventoRepository {
         this.eventos.put(evento.getId(), evento);
     }
 
-
+    /**
+     * Elimina un evento del hashmap
+     * @param id
+     * @return
+     */
     public Optional<Evento> bajaEvento(Long id){
         Evento evento = this.eventos.remove(id);
         return Optional.ofNullable(evento);

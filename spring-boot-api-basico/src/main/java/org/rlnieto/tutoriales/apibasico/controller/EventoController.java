@@ -40,10 +40,10 @@ public class EventoController {
      */
     @GetMapping("/eventos/{id}")
     ResponseEntity eventoById(@PathVariable Long id){
-        Evento evento = this.eventoRepository.findById(id);
+        Optional<Evento> evento = this.eventoRepository.findById(id);
 
         // Si el evento no existe devolvemos un 404
-        if(null == evento){
+        if(evento.isEmpty()){
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(null);
@@ -51,7 +51,7 @@ public class EventoController {
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(evento);
+                .body(evento.get());
     }
 
     /**
