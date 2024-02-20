@@ -12,14 +12,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/evento/:id",
+					"raw": "http://localhost:8080/eventos/:id",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"evento",
+						"eventos",
 						":id"
 					],
 					"variable": [
@@ -33,22 +33,36 @@
 			"response": []
 		},
 		{
-			"name": "Consulta de todos los eventos",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
+			"name": "Baja de evento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/eventos/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eventos",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
 			},
+			"response": []
+		},
+		{
+			"name": "Consulta de todos los eventos",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    texto: \"Texto de ejemplo enviado como json\",\n    otro_texto: \"Más texto\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:8080/eventos",
 					"protocol": "http",
@@ -71,6 +85,34 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"id\": 100,\n    \"motivo\": \"pruebas\",\n    \"tipo\": \"pruebas\",\n    \"fecha\": \"2024-02-17\",\n    \"hora\": \"11:00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/eventos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"eventos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modificación de evento",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"motivo\": \"xxx\",\n    \"tipo\": \"xxx\",\n    \"fecha\": \"2024-02-17\",\n    \"hora\": \"11:00:00\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
