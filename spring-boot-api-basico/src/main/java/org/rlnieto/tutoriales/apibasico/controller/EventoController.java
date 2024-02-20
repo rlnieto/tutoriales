@@ -89,6 +89,26 @@ public class EventoController {
                 .body(evento.get());
     }
 
+    /**
+     * Actualiza un evento
+     * @param evento
+     * @return
+     */
+    @PutMapping("/eventos")
+    ResponseEntity modificarEvento(@RequestBody Evento evento) {
+        Optional<Evento> eventoAnterior = this.eventoRepository.modificarEvento(evento);
+
+        if (eventoAnterior.isEmpty()) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(null);
+        }
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(eventoAnterior.get());
+    }
+
 
 
 /*    @GetMapping("/{id}")

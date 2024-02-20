@@ -67,6 +67,10 @@ public class EventoRepository {
         return Optional.ofNullable(evento);
     }
 
+    public Optional<Evento> modificarEvento(Evento evento){
+        Optional<Evento> eventoAnterior = Optional.ofNullable(this.eventos.replace(evento.getId(), evento));
+        return eventoAnterior;
+    }
 
     /**
      * Método privada para cargar el hashmap utilizado en las operaciones del repository
