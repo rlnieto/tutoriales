@@ -2,7 +2,7 @@
 
 Proyectos:
 
-* *spring-boot-api-basico*: creación de un API rest con srping boot (sin usar OpenAPI)
+* *spring-boot-api-basico*: creación de un API rest con spring boot (sin usar OpenAPI)
 
 
 Pruebas Jenkins
