@@ -14,7 +14,7 @@
 	<name>spring-boot-api-basico</name>
 	<description>Ejemplo básico de creación de un API rest con Spring boot</description>
 	<properties>
-		<maven.compiler.release>21</maven.compiler.release>
+		<maven.compiler.release>17</maven.compiler.release>
 	</properties>
 
 	<!--
